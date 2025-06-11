@@ -1,2 +1,12 @@
-# Cookie-Converter-Tool
-Cookie Converter Tool is a simple and interactive tool developed in Python to automatically detect the format of cookie files and convert them
+# 🍪 Cookie Converter Tool
+
+![Python](https://img.shields.io/badge/Python-3.6%2B-blue?logo=python)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Platform](https://img.shields.io/badge/Platform-Windows%7CmacOS%7CLinux-lightgrey)
+
+A simple and lightweight tool to **detect** and **convert cookie files** between multiple formats like JSON, Netscape, Mozilla, and Selenium.
+
+---
+
+## 📁 Folder Structure
+
