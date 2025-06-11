@@ -8,5 +8,17 @@ A simple and lightweight tool to **detect** and **convert cookie files** between
 
 ---
 
-## 📁 Folder Structure
+## 🚀 Features
+
+- ✅ Automatic cookie format detection  
+- ✅ Convert to multiple formats  
+- ✅ Choose custom output file extensions  
+- ✅ Batch processing of all files in the `cookies/` folder  
+- ✅ Clean and user-friendly interface in the terminal  
+- ✅ No third-party dependencies  
+
+## 📦 How to Use
+
+1. Place your cookie files inside the `Cookies/` folder
+2. Run the tool by double-clicking `Convert.bat`
 
