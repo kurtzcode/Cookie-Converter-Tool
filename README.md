@@ -22,3 +22,10 @@ A simple and lightweight tool to **detect** and **convert cookie files** between
 1. Place your cookie files inside the `Cookies/` folder
 2. Run the tool by double-clicking `Convert.bat`
 
+## License
+
+This project is open-source and free to use under the MIT License.
+
+---
+
+Made with ❤️ for easy cookie format conversions.
