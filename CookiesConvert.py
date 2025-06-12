@@ -156,19 +156,36 @@ def main():
         print("No cookie files found in 'cookies/'")
         return
 
+def main():
+    arquivos = list(INPUT_DIR.glob("*"))
+    if not arquivos:
+        print("No cookie files found in 'Cookies/'")
+        return
+
     cookies_detectados = []
 
     print("Detecting cookie file formats:", end=" ")
     for i, arquivo in enumerate(arquivos):
+        if arquivo.name.lower() == "help.txt":
+            continue  
+
         texto = arquivo.read_text(encoding="utf-8", errors="ignore")
         formato_detectado, cookies = detectar_formato(texto)
-        print(f"{arquivo.name} ({formato_detectado})", end="\n" if i == len(arquivos) - 1 else ", ")
+        print(f"{arquivo.name} ({formato_detectado})")
         if formato_detectado != "unknown" and cookies:
             cookies_detectados.append((arquivo.stem, cookies))
 
     if not cookies_detectados:
         print("No recognized cookie formats were found or cookies are empty.")
         return
+
+    output_format = menu_formatos()
+    output_extension = menu_extensoes()
+
+    for file_name, cookies in cookies_detectados:
+        salvar_cookie(cookies, file_name, output_format, output_extension)
+
+    print("\nConversion completed. Check the files in 'ConvertedCookies'.")
 
     output_format = menu_formatos()
     output_extension = menu_extensoes()
