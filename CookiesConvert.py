@@ -87,7 +87,7 @@ def detectar_formato(texto):
     return "unknown", []
 
 def salvar_cookie(data, file_name, formato, extensao):
-    output_path = OUTPUT_DIR / f"{file_name}.{formato}.{extensao.lstrip('.')}"
+    output_path = OUTPUT_DIR / f"{file_name}.{extensao.lstrip('.')}"
     with open(output_path, "w", encoding="utf-8") as f:
         if formato in ["json", "selenium"]:
             json.dump(data, f, indent=2, ensure_ascii=False)
@@ -151,8 +151,7 @@ def menu_extensoes():
         print("Invalid choice, please try again.")
 
 def main():
-    arquivos = [f for f in INPUT_DIR.glob("*.txt") if "help" not in f.name.lower()]
-
+    arquivos = list(INPUT_DIR.glob("*"))
     if not arquivos:
         print("No cookie files found in 'Cookies/'")
         return
@@ -160,15 +159,15 @@ def main():
     cookies_detectados = []
 
     print("Detecting cookie file formats:", end=" ")
-    for i, arquivo in enumerate(arquivos):
+    for arquivo in arquivos:
+        if arquivo.name.lower() == "help.txt":
+            continue
+
         texto = arquivo.read_text(encoding="utf-8", errors="ignore")
         formato_detectado, cookies = detectar_formato(texto)
-        if i > 0:
-            print(", ", end="")
-        print(f"{arquivo.name} ({formato_detectado})", end="")
+        print(f"{arquivo.name} ({formato_detectado})")
         if formato_detectado != "unknown" and cookies:
             cookies_detectados.append((arquivo.stem, cookies))
-    print()  # Linha nova após exibir todos
 
     if not cookies_detectados:
         print("No recognized cookie formats were found or cookies are empty.")
@@ -180,7 +179,7 @@ def main():
     for file_name, cookies in cookies_detectados:
         salvar_cookie(cookies, file_name, output_format, output_extension)
 
-    print("\nConversion completed successfully! Check the files in 'ConvertedCookies'.")
+    print("\nConversion completed successfully!")
 
 if __name__ == "__main__":
     main()
