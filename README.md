@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="(https://i.imgur.com/AbCdEfG.png)" alt="Cookie Converter Tool banner" width="800"/>
+</p>
+
+
 # 🍪 Cookie Converter Tool
 
 ![Python](https://img.shields.io/badge/Python-3.6%2B-blue?logo=python)
