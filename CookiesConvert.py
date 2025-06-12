@@ -138,7 +138,7 @@ def menu_extensoes():
         try:
             choice = int(input("Enter the corresponding number: "))
             if 1 <= choice <= len(options):
-                if options[choice - 1] == "custom":
+                if options[choice - 1].lower() == "custom":
                     custom_ext = input("Enter custom extension (without dot): ").strip()
                     if custom_ext and all(c.isalnum() for c in custom_ext):
                         return custom_ext
@@ -151,13 +151,8 @@ def menu_extensoes():
         print("Invalid choice, please try again.")
 
 def main():
-    arquivos = list(INPUT_DIR.glob("*"))
-    if not arquivos:
-        print("No cookie files found in 'cookies/'")
-        return
+    arquivos = [f for f in INPUT_DIR.glob("*.txt") if "help" not in f.name.lower()]
 
-def main():
-    arquivos = list(INPUT_DIR.glob("*"))
     if not arquivos:
         print("No cookie files found in 'Cookies/'")
         return
@@ -166,14 +161,14 @@ def main():
 
     print("Detecting cookie file formats:", end=" ")
     for i, arquivo in enumerate(arquivos):
-        if arquivo.name.lower() == "help.txt":
-            continue  
-
         texto = arquivo.read_text(encoding="utf-8", errors="ignore")
         formato_detectado, cookies = detectar_formato(texto)
-        print(f"{arquivo.name} ({formato_detectado})")
+        if i > 0:
+            print(", ", end="")
+        print(f"{arquivo.name} ({formato_detectado})", end="")
         if formato_detectado != "unknown" and cookies:
             cookies_detectados.append((arquivo.stem, cookies))
+    print()  # Linha nova após exibir todos
 
     if not cookies_detectados:
         print("No recognized cookie formats were found or cookies are empty.")
@@ -185,15 +180,7 @@ def main():
     for file_name, cookies in cookies_detectados:
         salvar_cookie(cookies, file_name, output_format, output_extension)
 
-    print("\nConversion completed. Check the files in 'ConvertedCookies'.")
-
-    output_format = menu_formatos()
-    output_extension = menu_extensoes()
-
-    for file_name, cookies in cookies_detectados:
-        salvar_cookie(cookies, file_name, output_format, output_extension)
-
-    print("\nConversion completed. Check the files in 'ConvertedCookies'.")
+    print("\nConversion completed successfully! Check the files in 'ConvertedCookies'.")
 
 if __name__ == "__main__":
     main()
