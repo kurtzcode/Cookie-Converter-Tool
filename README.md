@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="([https://i.imgur.com/AbCdEfG.png](https://imgur.com/Ba8U4uA))" alt="Cookie Converter Tool banner" width="800"/>
+  <img src="(https://i.imgur.com/Ba8U4uA.png)" alt="Cookie Converter Tool banner" width="800"/>
 </p>
 
 
